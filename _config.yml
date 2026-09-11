@@ -1,0 +1,10 @@
+title: "Pirah Noor Soomro"
+description: "AI Infrastructure • Runtime Systems • HPC • Inference Engineering"
+theme: jekyll-theme-cayman
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
