@@ -5,293 +5,396 @@ title: "PhD Research"
 
 # PhD Research - Adaptive Runtime Systems for AI Workloads
 
-## Summary (Portfolio Version)
+## Building Adaptive Runtime Systems for AI Workloads
 
-My PhD focused on designing **adaptive runtime systems** that intelligently execute AI inference workloads on heterogeneous computing platforms.  
-The core theme across all research:
+My doctoral research focused on the design of runtime systems that can efficiently execute AI workloads on heterogeneous computing platforms.
 
-> "Treat hardware differences as an optimization opportunity rather than an inconvenience."  
-> *(Reseme 2026 (2))*
+The central challenge was understanding how computational workloads should be partitioned, scheduled, and adapted across resources with different compute capabilities, memory characteristics, and performance behaviors.
 
-I built scheduling, orchestration, and runtime-level systems that continuously improve workload placement using runtime feedback - not static models.
+While convolutional neural networks were used as representative workloads, the research itself concentrated on runtime systems, resource orchestration, performance engineering, scheduling, interference mitigation, and adaptive execution.
 
----
-
-# Interactive Overview
-
-Below are expandable sections so readers can explore your work at different depths.
+The resulting work produced several scheduling and runtime frameworks capable of continuously improving workload placement decisions based on workload behavior and platform characteristics.
 
 ---
 
-## <details><summary><strong>1. Core Identity</strong></summary>
+# Research Vision
 
-Designed and implemented **adaptive runtime systems** for machine-learning inference workloads across heterogeneous CPU/GPU platforms.
+Modern computing systems are increasingly heterogeneous.
 
-From your document:  
-> "Designed and implemented adaptive runtime systems for machine learning inference workloads on heterogeneous computing platforms, focusing on scheduling, resource allocation, workload orchestration, performance optimization, and automated runtime adaptation."  
-> *(Reseme 2026 (4))*
+A single platform may contain:
 
-Key themes:
-- Runtime adaptation
-- Hardware-aware execution
-- Online scheduling
-- Multi-pipeline inference
-- Interference mitigation
-- Performance-driven optimization
+- Different classes of CPUs
+- Multiple memory hierarchies
+- Accelerators
+- Shared system resources
+- Non-uniform communication paths
 
-</details>
+Traditional execution models typically assume resources are interchangeable.
 
----
+My research explored a different approach:
 
-## <details><summary><strong>2. Research Vision</strong></summary>
+Treat hardware differences as an optimization opportunity rather than an inconvenience.
 
-Modern systems are heterogeneous: multiple CPU classes, memory hierarchies, accelerators, NUMA domains.
-
-Your research explored:
-
-> "Runtime systems that continuously make intelligent decisions about where work should execute and how resources should be utilized."  
-> *(Reseme 2026 (2))*
-
-Focus:
-- Exploit hardware asymmetry
-- Adapt to dynamic workload behavior
-- Optimize latency, throughput, and resource usage
-
-</details>
+The goal was to design runtime systems that continuously make intelligent decisions about where work should execute and how resources should be utilized.
 
 ---
 
-## <details><summary><strong>3. Runtime Systems Engineering</strong></summary>
+# Runtime Systems Engineering
 
-You worked **inside** runtime systems - not on top of them.
+A major portion of the research involved developing and extending runtime infrastructure.
 
-From your document:  
-> "Rather than simply building applications on top of existing runtimes, I worked directly with runtime internals and scheduling infrastructure."  
-> *(Reseme 2026 (4))*
+Rather than only building applications, I worked directly inside runtime systems responsible for task execution, scheduling, resource allocation, tracing, and workload orchestration.
 
-Contributions:
+### Key Contributions
+
 - Extended XiTAO runtime internals
-- Modified scheduler subsystems
-- Added execution tracing + observability
+- Modified scheduler components
+- Developed resource-allocation mechanisms
 - Implemented affinity-aware execution
-- Built adaptive resource-allocation mechanisms
-- ~500 lines of runtime-level modifications
+- Designed workload-placement strategies
+- Built runtime tracing infrastructure
+- Investigated persistent task execution models
+- Developed adaptive task scheduling mechanisms
 
-</details>
+### Core Skills
 
----
-
-## <details><summary><strong>4. Scheduling Systems</strong></summary>
-
-You built **online scheduling systems** that:
-
-- Observe workload behavior
-- Collect runtime measurements
-- Evaluate candidate schedules
-- Adapt execution policies
-- Improve decisions continuously
-
-From your document:  
-> "Designed entirely online scheduling systems that adapt execution policies and improve scheduling decisions dynamically."  
-> *(Reseme 2026 (4))*
-
-Capabilities:
-- Hardware-aware scheduling
-- Resource-aware scheduling
-- Interference-aware scheduling
-- Throughput + latency optimization
-- Runtime autotuning
-
-</details>
+- Runtime systems development
+- Systems software engineering
+- Concurrency
+- Multithreading
+- Resource scheduling
+- Runtime observability
+- Execution orchestration
 
 ---
 
-## <details><summary><strong>5. Hardware-Aware Computing</strong></summary>
+# Hardware-Aware Scheduling
 
-Platforms you worked with:
-- ARM big.LITTLE
-- Intel KNL
-- NVIDIA Jetson
-- HPC clusters (SNIC, NAISS)
+One of the primary themes throughout the research was hardware-aware scheduling.
 
-Topics:
-- NUMA optimization
-- Memory bandwidth asymmetry
+The work explicitly considered differences in:
+
+- Processor performance
+- Memory bandwidth
 - Resource contention
+- Hardware asymmetry
+- Execution efficiency
+
+Scheduling decisions were based not only on workload characteristics but also on the capabilities of the underlying hardware.
+
+### Topics Explored
+
+- ARM big.LITTLE scheduling
+- CPU affinity management
 - Execution-place assignment
+- NUMA-aware execution
+- Resource contention
+- Performance asymmetry
 
-Outcomes:
+### Outcomes
+
 - Improved workload distribution
-- Better scalability
+- Increased throughput
+- Better resource utilization
 - Reduced bottlenecks
-
-</details>
+- Improved scalability
 
 ---
 
-## <details><summary><strong>6. PipeSearch - Online Schedule Optimization</strong></summary>
+# Large-Scale Scheduling Optimization
 
-A runtime-aware search engine for scheduling.
+Many scheduling problems quickly become computationally intractable.
 
-Characteristics:
+The number of possible scheduling configurations often grows into millions of candidate solutions.
+
+My research focused on developing techniques capable of finding high-quality schedules without requiring exhaustive exploration.
+
+### Areas of Work
+
+- Design-space exploration
+- Heuristic-guided search
+- Evolutionary search
+- Runtime autotuning
+- Search-space pruning
+- Cost-function optimization
+
+### Why It Matters
+
+The same type of optimization problem appears today in:
+
+- AI serving infrastructure
+- Resource schedulers
+- GPU orchestration systems
+- Distributed inference platforms
+- Cloud resource allocation systems
+
+---
+
+# PipeSearch
+
+## Online Schedule Optimization Framework
+
+PipeSearch was developed to explore large scheduling spaces while minimizing search cost.
+
+The framework used runtime-aware search mechanisms to efficiently converge toward high-quality scheduling solutions.
+
+### Characteristics
+
+- Runtime optimization
 - Guided search
-- Online optimization
+- Adaptive scheduling
 - Near-optimal schedule generation
 - Reduced search complexity
 
-Industry interpretation:
-> "Essentially a scheduling optimization engine capable of navigating large execution spaces while balancing performance and resource usage."  
-> *(Reseme 2026 (2))*
+### Industry Interpretation
 
-</details>
+Viewed from an infrastructure perspective, PipeSearch is essentially a scheduling optimization engine capable of navigating large execution spaces while continuously balancing performance and resource usage.
 
 ---
 
-## <details><summary><strong>7. Shisha - Hardware-Aware Resource Orchestration</strong></summary>
+# Shisha
 
-A dynamic orchestration system that removes the need for pre-generated scheduling spaces.
+## Hardware-Aware Resource Orchestration Framework
 
-Capabilities:
+Shisha extended the ideas introduced by PipeSearch and removed the requirement for large pre-generated scheduling spaces.
+
+Instead, it generated scheduling decisions dynamically and adapted more effectively to increasingly heterogeneous systems.
+
+### Core Capabilities
+
 - Dynamic schedule generation
+- Resource-aware execution
 - Runtime adaptation
 - Workload balancing
 - Online optimization
 
-Relevance:
-Maps directly to modern inference systems (vLLM, Triton, TensorRT-LLM).
+### Modern Relevance
 
-</details>
+Many concepts from Shisha map naturally to modern infrastructure systems where workloads must be assigned across combinations of:
+
+- CPU
+- GPU
+- NPU
+- Accelerators
+
+while simultaneously balancing performance and resource constraints.
 
 ---
 
-## <details><summary><strong>8. Multi-Pipeline Inference Systems</strong></summary>
+# Multi-Pipeline AI Inference
 
-You extended your research beyond single pipelines.
+As the research evolved, the focus expanded beyond optimizing individual inference pipelines.
 
-Challenges:
-- Concurrent pipelines
+A major challenge emerged when multiple AI pipelines execute concurrently and must share the same system resources.
+
+The problem shifted from:
+
+How should one workload be scheduled?
+
+to:
+
+How should many workloads share infrastructure efficiently?
+
+### Research Topics
+
+- Concurrent inference pipelines
+- Multi-workload execution
+- Pipeline coordination
 - Shared-resource scheduling
-- Runtime interference
-- Dynamic resource sharing
+- Throughput optimization
+- Runtime workload balancing
 
-Capabilities:
-- Persistent execution models
-- Multi-workload coordination
-- Interference mitigation
-- Throughput-aware balancing
+### Why It Matters
 
-</details>
+Modern AI serving systems process thousands of concurrent requests sharing the same infrastructure.
+
+The concepts explored during this work are closely related to:
+
+- AI serving platforms
+- Multi-tenant inference
+- Resource orchestration
+- Request scheduling
+- Accelerator utilization
 
 ---
 
-## <details><summary><strong>9. Interference Mitigation & Contention Analysis</strong></summary>
+# Interference Mitigation & Resource Contention
 
-You analyzed:
-- CPU contention
-- Cache contention
-- Memory bandwidth contention
-- Execution-place conflicts
+One of the most practical aspects of the research focused on understanding how workloads affect each other when sharing resources.
 
-Built:
-- Controlled interference experiments
+Many systems fail to achieve expected performance because workload interactions create contention for:
+
+- CPU resources
+- Memory bandwidth
+- Cache capacity
+- Shared execution resources
+
+The research investigated how runtime systems can identify and mitigate these effects.
+
+### Areas Studied
+
+- Resource contention
+- Performance interference
+- Co-execution effects
+- Shared-resource behavior
 - Contention-aware scheduling
-- Runtime-driven mitigation strategies
+- Performance isolation
 
-</details>
+### Key Insight
 
----
+A perfectly balanced workload does not necessarily produce balanced performance.
 
-## <details><summary><strong>10. Visualization & Analytics</strong></summary>
+Understanding interference became just as important as understanding workload size.
 
-You built analytics pipelines for:
-- Data ingestion
-- Transformation
-- Graph generation
-- Performance visualization
+### Relevance Today
 
-Tools:
-- Python
-- Pandas
-- Matplotlib
+This challenge appears throughout modern computing infrastructure including:
 
-Outputs:
-- Scheduler evaluation plots
-- Throughput graphs
-- Convergence analyses
-
-</details>
+- Multi-tenant AI serving
+- GPU sharing
+- Cloud scheduling
+- Resource governance
+- Distributed AI systems
 
 ---
 
-## <details><summary><strong>11. HPC & Systems Experience</strong></summary>
+# Performance Engineering
 
-Worked with:
-- SNIC / NAISS clusters
+Performance measurement and optimization formed a central part of the research.
+
+Every scheduling decision required validation through extensive measurement and analysis.
+
+### Tools & Techniques
+
+#### Profiling
+
+- Linux Perf
+- PMU counters
+- TensorBoard
+- Extrae
+- Custom instrumentation
+
+#### Analysis
+
+- Roofline analysis
+- Throughput analysis
+- Latency analysis
+- Scalability studies
+- Contention analysis
+- Memory behavior analysis
+- NUMA analysis
+
+### Results
+
+The research produced scheduling decisions driven by measured system behavior rather than assumptions.
+
+---
+
+# Benchmarking & Experimental Infrastructure
+
+A significant amount of engineering effort went into creating benchmarking and experimentation infrastructure.
+
+The objective was to support reliable evaluation across multiple workloads, hardware platforms, and scheduling policies.
+
+### Infrastructure Built
+
+- Experiment automation frameworks
+- Benchmark runners
+- Cluster execution pipelines
+- Structured logging systems
+- Data collection workflows
+- Result databases
+- Visualization pipelines
+- Automated analysis systems
+
+### Scale
+
+- Thousands of experiments
+- Automated parameter sweeps
+- Multi-platform validation
+- Large benchmarking campaigns
+
+---
+
+# HPC & Heterogeneous Computing
+
+The research was evaluated across both embedded and high-performance computing environments.
+
+### Platforms
+
+#### Embedded & Edge Systems
+
+- NVIDIA Jetson TX2
+- ARM Cortex-A57
+- ARM big.LITTLE architectures
+
+#### High Performance Computing
+
 - Intel KNL
-- ARM platforms
-- Benchmark suites (STREAM, LINPACK, OSU)
+- HPC clusters
+- SNIC infrastructure
+- NAISS infrastructure
 
-Focus:
+### Focus
+
+- Performance portability
 - Scalability
-- Reproducibility
-- Resource utilization
-- Large-scale experimentation
-
-</details>
+- Resource efficiency
+- Hardware heterogeneity
+- Runtime adaptation
 
 ---
 
-## <details><summary><strong>12. Industry Relevance</strong></summary>
+# Technical Expertise Developed
 
-Your PhD maps directly to modern AI infrastructure:
+### Runtime Systems
 
-- vLLM
-- SGLang
-- Triton
-- TensorRT-LLM
-- Multi-tenant inference systems
-- GPU/CPU heterogeneous scheduling
+- Scheduler development
+- Runtime modification
+- Resource management
+- Task orchestration
+- Execution placement
 
-From your document:  
-> "The biggest insight is that what you built is not fundamentally a CNN system - it is a runtime scheduling and resource orchestration framework."  
-> *(Reseme 2026 (4))*
+### AI Infrastructure
 
-</details>
+- Inference optimization
+- Multi-pipeline execution
+- Adaptive scheduling
+- Resource-aware execution
+- Runtime decision systems
+
+### Performance Engineering
+
+- Profiling
+- Bottleneck analysis
+- Scalability analysis
+- Performance characterization
+- Roofline modeling
+
+### Systems & HPC
+
+- Heterogeneous computing
+- Linux systems
+- Affinity management
+- NUMA optimization
+- Parallel execution
+
+### Resource Orchestration
+
+- Workload balancing
+- Interference mitigation
+- Resource allocation
+- Contention-aware scheduling
+- Multi-tenant execution concepts
 
 ---
 
-## <details><summary><strong>13. Hidden Strength Recruiters Miss</strong></summary>
+# Impact
 
-You repeatedly demonstrated the ability to understand and extend unfamiliar complex systems.
+Although the application domain was AI inference, the broader contribution was the design of adaptive runtime systems capable of intelligently orchestrating workloads across heterogeneous computing resources.
 
-From your document:  
-> "I am comfortable entering a large system, reverse engineering its design, identifying extension points, and implementing new functionality without being the original author."  
-> *(Reseme 2026 (4))*
+The work evolved from optimizing a single AI pipeline into managing collections of competing workloads sharing limited resources, making it highly relevant to modern AI infrastructure, serving systems, runtime platforms, and large-scale computing environments.
 
-This is extremely valuable for:
-- Inference engines
-- Runtime systems
-- Compilers
-- Infrastructure platforms
+## Summary
 
-</details>
-
----
-
-## Final Industry Summary
-
-> "Designed and built adaptive runtime scheduling and resource orchestration systems that optimize AI inference workloads across heterogeneous computing platforms through hardware-aware scheduling, interference mitigation, performance-driven optimization, and runtime feedback."  
-> *(Reseme 2026 (4))*
-
----
-
-# PHASE 2 - What Happens Next
-
-Now that the **structure** is ready, you can choose what to do next:
-
-- [Refine the Summary](ca://s?q=refine_phd_summary)
-- [Rewrite each interactive section in polished portfolio language](ca://s?q=polish_phd_sections)
-- [Add diagrams or visuals](ca://s?q=add_phd_visuals)
-- [Add project links or code references](ca://s?q=add_phd_code_links)
-
-Which part do you want to refine first?
+Designed adaptive runtime scheduling and resource orchestration systems that optimized single-pipeline and multi-pipeline AI workloads across heterogeneous computing platforms through hardware-aware scheduling, interference mitigation, online optimization, and performance-driven execution.
